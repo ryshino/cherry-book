@@ -1,39 +1,43 @@
-numbers = [1, 2, 3]
+a = [1, 2, 3]
+b = [3, 4, 5]
+p a | b
+p a - b
+p a & b
 
-# 存在する要素の場合：ブロックは実行されない
-numbers.delete(1) { puts "要素が見つかりません" }
-# => 1 （ブロックは実行されない）
+a = Set[1, 2, 3]
+b = Set[3, 4, 5]
+p a | b
+p a - b
+p a & b
 
-# 存在しない要素の場合：ブロックが実行される
-numbers.delete(100) { puts "要素が見つかりません" }
-# => "要素が見つかりません" （ブロックが実行される）
+a, *b, c, d = 1, 2, 3, 4, 5
+p a
+p b
+p c
+p d
 
-numbers = [1, 2, 3, 4]
-sum = 0
-numbers.each { |n| sum += n}
+a = []
+b = [2, 3]
+a.push(1)
+a.push(*b)
+p a
 
-even_numbers = numbers.select { |n| n.even? }
-even_numbers
+def greet(*names)
+  p names
+  "#{names.join('と')}、こんにちは！"
+end
 
-non_nultiples_of_three = numbers.reject { |n| n % 3 == 0}
-non_nultiples_of_three
+p greet('田中さん')
+p greet('田中さん', '鈴木さん')
+p greet('田中さん', '鈴木さん', '佐藤さん')
 
-numbers.sum { |n| n * 2 }
+a = [1, 2, 3]
+# 配列は*を使うことで展開することが出来る。
+p [1, 2, *a, 5]
 
-chars = ['a', 'b', 'c', 'd']
-chars.join('-')
+p '1あ2あ3'.split('あ')
 
-chars.sum('') { |c| c.upcase }
-
-# 3を含む
-p chars[1..3]
-
-# 3を含まない
-p chars[1...3]
-
-# 配列を作れる
-p ('a'..'d').to_a
-
-sum = 0
-(1..5).each { |num| sum += num }
-p sum
+def hoge
+  'こんにちは' << '追加できる？'
+end
+p Array.new(5) { |n| "#{hoge}#{n + 1}" }
