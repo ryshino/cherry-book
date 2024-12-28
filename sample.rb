@@ -1,43 +1,27 @@
-a = [1, 2, 3]
-b = [3, 4, 5]
-p a | b
-p a - b
-p a & b
+fruits = ['apple', 'orange', 'melon']
+p fruits.each
 
-a = Set[1, 2, 3]
-b = Set[3, 4, 5]
-p a | b
-p a - b
-p a & b
-
-a, *b, c, d = 1, 2, 3, 4, 5
-p a
-p b
-p c
-p d
-
-a = []
-b = [2, 3]
-a.push(1)
-a.push(*b)
-p a
-
-def greet(*names)
-  p names
-  "#{names.join('と')}、こんにちは！"
+dimensions = [
+  [10, 20],
+  [30, 40],
+  [50, 60],
+]
+areas = []
+dimensions.each do |length, width|
+  areas << length * width
 end
+p areas
 
-p greet('田中さん')
-p greet('田中さん', '鈴木さん')
-p greet('田中さん', '鈴木さん', '佐藤さん')
+(length, width), i = [[10, 20], 0]
+p length
+p width
+p i
 
-a = [1, 2, 3]
-# 配列は*を使うことで展開することが出来る。
-p [1, 2, *a, 5]
+p ['1', '20', '300'].map { _1.rjust(3, '0') }
 
-p '1あ2あ3'.split('あ')
-
-def hoge
-  'こんにちは' << '追加できる？'
-end
-p Array.new(5) { |n| "#{hoge}#{n + 1}" }
+sum = 0
+[[1, 2, 3,], [4, 5, 7]].each do |values|
+  values.each do
+    sum += _1
+  end
+end　
