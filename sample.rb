@@ -1,63 +1,13 @@
-a = []
-10.upto(14) { |n| a << n }
-p a
+h = Hash.new('hello')
+a = h[:foo]
+b = h[:bar]
 
-a = []
-14.downto(10) { |n| a << n }
-p a
+p h
 
-def factorial(n)
-  n > 0 ? n * factorial(n - 1) : 1
-end
+p %s!ruby is fun!
+p %s(ruby is fun)
+p %i(apple orange melon)
 
-p factorial(5)
-
-def factorial(n)
-  ret = 1
-  (1..n).each { |n| ret *= n }
-  ret
-end
-p factorial(5)
-p factorial(0)
-
-numbers = [1, 2, 3, 4, 5].shuffle
-numbers.each do |n|
-  puts n
-  break if n == 5
-end
-
-fruits = ['apple', 'melon', 'orange']
-numbers = [1, 2, 3]
-fruits.each do |fruit|
-  numbers.shuffle.each do |n|
-    puts "#{fruit}, #{n}"
-    break if n == 3
-  end
-end
-
-fruits = ['apple', 'melon', 'orange']
-numbers = [1, 2, 3]
-catch :done do
-  fruits.shuffle.each do |fruit|
-    numbers.shuffle.each do |n|
-      puts "#{fruit}, #{n}"
-      if fruit == 'orange' && n == 3
-        throw :done
-      end
-    end
-  end
-end
-
-foods = ['ピーマン', 'トマト', 'セロリ']
-count = 0
-
-foods.each do |food|
-  print "#{food}は好きですか？"
-  answer = ['はい', 'いいえ'].sample
-  answer = 'いいえ'
-  puts answer
-
-  count += 1
-  redo if answer != 'はい' && count < 2
-  count = 0
-end
+name = 'Alice'
+p %i(hello\ngood-bye #{name.upcase})
+p %I(hello\ngood-bye #{name.upcase})
