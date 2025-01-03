@@ -1,12 +1,22 @@
-html = <<-HTML
-<select name="game_console">
-<option value="none"></option>
-<option value="wii_u" selected>Wii U</option>
-<option value="ps4">プレステ4</option>
-<option value="gb">ゲームボーイ</option>
-</select>
-HTML
+text = <<-TEXT
+def hello(name)
+  puts "Hello, \#{name}!"
+end
 
-replaced = html.gsub(/<option value="(\w+)"(?: selected)?>(.*)<\/option>/, '\1\2')
+hello('Alice')
+     
+hello('Bob')
+	
+hello('Carol')
+TEXT
 
-puts replaced
+puts text.gsub(/^[ \t]+$/, '')
+
+text = <<-TEXT
+  Lorem ipsum dolor sit amet.
+Vestibulum luctus est ut mauris tempor tincidunt.
+         Suspendisse eget metus
+      Curabitur nec urna eget ligula accumsan congue.
+TEXT
+
+puts text.gsub(/[ \t]+/, '')
