@@ -20,3 +20,13 @@ Vestibulum luctus est ut mauris tempor tincidunt.
 TEXT
 
 puts text.gsub(/[ \t]+/, '')
+
+text = <<-TEXT
+{
+  japan:	'yen',
+  america:'dollar',
+  italy:     'euro'
+}
+TEXT
+
+puts text.gsub(/:[ \t]*/, ' ')
