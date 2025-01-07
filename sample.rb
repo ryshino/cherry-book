@@ -1,6 +1,6 @@
 text = <<-TEXT
-type=zip; filename=users.zip; size=1024;
-type=xml; filename=posts.xml; size=2048;
+John:guitar, George:guitar, Paul:bass, Ringo:drum
+Freddie:vocal, Brian:guitar, John:bass, Roger:drum
 TEXT
-p text.scan(/(?<=filename=)[^;]+/)
-# => ["users.zip", "posts.xml"]
+p text.scan(/\w+(?=:bass)/)
+# => ["Paul", "John"]
