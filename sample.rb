@@ -1,32 +1,6 @@
 text = <<-TEXT
-def hello(name)
-  puts "Hello, \#{name}!"
-end
-
-hello('Alice')
-     
-hello('Bob')
-	
-hello('Carol')
+type=zip; filename=users.zip; size=1024;
+type=xml; filename=posts.xml; size=2048;
 TEXT
-
-puts text.gsub(/^[ \t]+$/, '')
-
-text = <<-TEXT
-  Lorem ipsum dolor sit amet.
-Vestibulum luctus est ut mauris tempor tincidunt.
-         Suspendisse eget metus
-      Curabitur nec urna eget ligula accumsan congue.
-TEXT
-
-puts text.gsub(/[ \t]+/, '')
-
-text = <<-TEXT
-{
-  japan:	'yen',
-  america:'dollar',
-  italy:     'euro'
-}
-TEXT
-
-puts text.gsub(/:[ \t]*/, ' ')
+p text.scan(/(?<=filename=)[^;]+/)
+# => ["users.zip", "posts.xml"]
