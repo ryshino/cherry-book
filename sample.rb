@@ -1,28 +1,26 @@
-class CountryCode
-  attr_reader :code
-
-  def initialize(code)
-    @code = code
+class Product
+  def initialize(name, price)
+    @name = name
+    @price = price
   end
 
-  def eql?(other)
-    puts "eql?メソッドが呼ばれました"
-    other.instance_of?(CountryCode) && code.eql?(other.code)
+  def display_text
+    stock = stock? ? 'あり' : 'なし'
+    puts "商品名: #{@name} 価格: #{@price} 在庫: #{stock}"
   end
 
-  def hash
-    # ここのcodeは@codeを返すattr_readerで定義されたメソッド
-    # つまりレシーバ（self）のインスタンス変数@codeを参照している
-    puts "hashメソッドが呼ばれました"
-    puts "レシーバのオブジェクトID: #{self.object_id}"
-    puts "codeのオブジェクトID: #{code.object_id}"
-    puts "codeのhash値: #{code.hash}"
-    code.hash
+  def stock?
+    raise "子クラスでstock?メソッドを定義してください"
   end
 end
 
-japan = CountryCode.new('JP')
-currencies = { japan => 'yen' }
+class DVD < Product
+  def stock?
+    # 本当はDBに問い合わせとかをする
+    true
+  end
+end
+product = Product.new('A great film', 1000)
 
-hoge = CountryCode.new('JP')
-p currencies[hoge]
+dvd = DVD.new('An awesome film', 3000)
+p dvd.display_text
