@@ -1,26 +1,31 @@
+module Loggable
+  private
+
+  def log(text)
+    puts "[LOG] #{text}"
+  end
+end
+
 class Product
-  def initialize(name, price)
-    @name = name
-    @price = price
-  end
+  include Loggable
 
-  def display_text
-    stock = stock? ? 'あり' : 'なし'
-    puts "商品名: #{@name} 価格: #{@price} 在庫: #{stock}"
-  end
-
-  def stock?
-    raise "子クラスでstock?メソッドを定義してください"
+  def title
+    log 'title is called.'
+    'A great movie'
   end
 end
 
-class DVD < Product
-  def stock?
-    # 本当はDBに問い合わせとかをする
-    true
+class User
+  include Loggable
+
+  def name
+    log 'name is called.'
+    'Alice'
   end
 end
-product = Product.new('A great film', 1000)
 
-dvd = DVD.new('An awesome film', 3000)
-p dvd.display_text
+product = Product.new
+product.title
+
+user = User.new
+user.name
