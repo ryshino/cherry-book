@@ -1,31 +1,29 @@
-module Loggable
-  private
+module A
+  def to_s
+    "<A> #{super}"
+  end
+end
 
-  def log(text)
-    puts "[LOG] #{text}"
+module B
+  def to_s
+    "<B> #{super}"
   end
 end
 
 class Product
-  include Loggable
-
-  def title
-    log 'title is called.'
-    'A great movie'
+  def to_s
+    "<Product> #{super}"
   end
 end
 
-class User
-  include Loggable
+class DVD < Product
+  include B
+  include A
 
-  def name
-    log 'name is called.'
-    'Alice'
+  def to_s
+    "<DVD> #{super}"
   end
 end
 
-product = Product.new
-product.title
-
-user = User.new
-user.name
+dvd = DVD.new
+p dvd.to_s
