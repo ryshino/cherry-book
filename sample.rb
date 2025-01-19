@@ -1,29 +1,20 @@
-module A
-  def to_s
-    "<A> #{super}"
+# このクラスは外部ライブラリに定義されてる想定
+class Product
+  def name
+    'A great film'
   end
 end
 
-module B
-  def to_s
-    "<B> #{super}"
+module NameDecorator
+  def name
+    "<<#{super}>>"
   end
 end
 
 class Product
-  def to_s
-    "<Product> #{super}"
-  end
+  prepend NameDecorator
 end
 
-class DVD < Product
-  include B
-  include A
-
-  def to_s
-    "<DVD> #{super}"
-  end
-end
-
-dvd = DVD.new
-p dvd.to_s
+product = Product.new
+p product.name
+p Product.ancestors
