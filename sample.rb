@@ -1,18 +1,24 @@
-class InvalidCountryError < StandardError
-  # エラーを捕捉した側でcountryの値を参照したい場合に必要
-  attr_reader :country
-
-  def initialize(country)
-    @country = country  # インスタンス変数に保存
-    super("無効な国名です: #{country}")
-  end
+def greet_ja(&block)
+  texts = ['おはよう', 'こんにちは', 'こんばんは']
+  # ブロックを別のメソッドに渡す
+  greet_common(texts, &block)
 end
 
-# 使用例
-begin
-  country = "XYZ"
-  raise InvalidCountryError.new(country)
-rescue InvalidCountryError => e
-  puts e.message        # => "無効な国名です: XYZ"
-  puts e.country        # => "XYZ"  # あとで国名だけを取り出せる
+def greet_en(&block)
+  texts = ['good morning', 'hello', 'good evening']
+  # ブロックを別のメソッドに渡す
+  greet_common(texts, &block)
+end
+
+def greet_common(texts, &block)
+  puts texts[0]
+  puts block.call(texts[1])
+  puts texts[2]
+end
+
+greet_ja do |text|
+  text * 2
+end
+greet_en do |text|
+  text.upcase
 end
