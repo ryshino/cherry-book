@@ -1,20 +1,18 @@
-# このクラスは外部ライブラリに定義されてる想定
-class Product
-  def name
-    'A great film'
+class InvalidCountryError < StandardError
+  # エラーを捕捉した側でcountryの値を参照したい場合に必要
+  attr_reader :country
+
+  def initialize(country)
+    @country = country  # インスタンス変数に保存
+    super("無効な国名です: #{country}")
   end
 end
 
-module NameDecorator
-  def name
-    "<<#{super}>>"
-  end
+# 使用例
+begin
+  country = "XYZ"
+  raise InvalidCountryError.new(country)
+rescue InvalidCountryError => e
+  puts e.message        # => "無効な国名です: XYZ"
+  puts e.country        # => "XYZ"  # あとで国名だけを取り出せる
 end
-
-class Product
-  prepend NameDecorator
-end
-
-product = Product.new
-p product.name
-p Product.ancestors
