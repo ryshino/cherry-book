@@ -1,18 +1,18 @@
-def fizz_buzz(n)
-  if n % 15 == 0
-    'Fizz Buzz'
-  elsif n % 3 == 0
-    'Fizz'
-  elsif n % 5 == 0
-    'Buzz'
-  else
-    n.to_s
+class InvalidCountryError < StandardError
+  # エラーを捕捉した側でcountryの値を参照したい場合に必要
+  attr_reader :country
+
+  def initialize(country)
+    @country = country  # インスタンス変数に保存
+    super("無効な国名です: #{country}")
   end
-rescue => e
-  # 発生した例外をログやメールに残す
-  puts "[LOG] エラーが発生しました: #{e.class}#{e.message}"
-  # 補足した例外を再度発生させ、プログラム自体は異常終了させる
-  raise
 end
 
-fizz_buzz(nil)
+# 使用例
+begin
+  country = "XYZ"
+  raise InvalidCountryError.new(country)
+rescue InvalidCountryError => e
+  puts e.message        # => "無効な国名です: XYZ"
+  puts e.country        # => "XYZ"  # あとで国名だけを取り出せる
+end
