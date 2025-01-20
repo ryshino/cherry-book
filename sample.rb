@@ -1,14 +1,18 @@
-retry_count = 0
-begin
-  puts '処理を開始します'
-  # わざと例外を発生させる
-  1 / 0
-rescue
-  retry_count += 1
-  if retry_count <= 3
-    puts "retryします。#{retry_count}回目"
-    retry
+def fizz_buzz(n)
+  if n % 15 == 0
+    'Fizz Buzz'
+  elsif n % 3 == 0
+    'Fizz'
+  elsif n % 5 == 0
+    'Buzz'
   else
-    puts 'retryに失敗しました'
+    n.to_s
   end
+rescue => e
+  # 発生した例外をログやメールに残す
+  puts "[LOG] エラーが発生しました: #{e.class}#{e.message}"
+  # 補足した例外を再度発生させ、プログラム自体は異常終了させる
+  raise
 end
+
+fizz_buzz(nil)
