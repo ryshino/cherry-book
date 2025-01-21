@@ -1,18 +1,17 @@
-class InvalidCountryError < StandardError
-  # エラーを捕捉した側でcountryの値を参照したい場合に必要
-  attr_reader :country
+def judge(age)
+  adult = Proc.new { |n| n > 20 }
+  child = Proc.new { |n| n < 20 }
 
-  def initialize(country)
-    @country = country  # インスタンス変数に保存
-    super("無効な国名です: #{country}")
+  case age
+  when adult
+    '大人です'
+  when child
+    '子どもです'
+  else
+    'はたちです'
   end
 end
 
-# 使用例
-begin
-  country = "XYZ"
-  raise InvalidCountryError.new(country)
-rescue InvalidCountryError => e
-  puts e.message        # => "無効な国名です: XYZ"
-  puts e.country        # => "XYZ"  # あとで国名だけを取り出せる
-end
+puts judge(25)
+puts judge(18)
+puts judge(20)
