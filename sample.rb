@@ -1,19 +1,16 @@
-require 'date'
-
-records = [
-  [2021],
-  [2019, 5],
-  [2017, 11, 25]
+cars = [
+  {name: 'The Beatle', engine: '105ps'},
+  {name: 'Prius', engine: '98ps', motor: '72ps'},
+  {name: 'Tesla', motor: '306ps'}
 ]
-new_records =  records.map do |record|
-  case record
-  in [y]
-    Date.new(y, 1, 1)
-  in [y, m]
-    Date.new(y, m, 1)
-  in [y, m, d]
-    Date.new(y, m, d)
+
+cars.each do |car|
+  case car
+  in {name:, engine:, motor:}
+    puts "Hybrid: #{name} / engine: #{engine} / motor: #{motor}"
+  in {name:, engine:}
+    puts "Gasoline: #{name} / engine: #{engine}"
+  in {name:, motor:}
+    puts "EV: #{name} / motor: #{motor}"
   end
 end
-
-p new_records
