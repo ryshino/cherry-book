@@ -1,17 +1,19 @@
-def judge(age)
-  adult = Proc.new { |n| n > 20 }
-  child = Proc.new { |n| n < 20 }
+require 'date'
 
-  case age
-  when adult
-    '大人です'
-  when child
-    '子どもです'
-  else
-    'はたちです'
+records = [
+  [2021],
+  [2019, 5],
+  [2017, 11, 25]
+]
+new_records =  records.map do |record|
+  case record
+  in [y]
+    Date.new(y, 1, 1)
+  in [y, m]
+    Date.new(y, m, 1)
+  in [y, m, d]
+    Date.new(y, m, d)
   end
 end
 
-puts judge(25)
-puts judge(18)
-puts judge(20)
+p new_records
