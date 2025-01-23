@@ -1,4 +1,7 @@
 require 'faker'
+require 'awesome_print'
 
-p Faker::VERSION
-p Faker::Name.name
+puts Faker::VERSION
+puts Faker::Name.name
+
+ap ['Alice', 'Bob', 'Carol']
