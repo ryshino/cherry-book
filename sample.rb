@@ -1,7 +1,10 @@
-hoge = case [1, 2, 3, 2, 1]
-in [*, n , 2, *] if n == 3
-  "matched: #{n}"
-else
-  "not matched"
-end
-p hoge
+name = ENV['MY_NAME']
+email = ARGV[0]
+age = ARGV[1]
+
+puts "name: #{name}, email: #{email}, age: #{age}"
+
+ver = RUBY_VERSION
+puts ver
+
+puts `cat lib/fizz_buzz.rb`
