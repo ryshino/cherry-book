@@ -1,10 +1,4 @@
-name = ENV['MY_NAME']
-email = ARGV[0]
-age = ARGV[1]
+require 'faker'
 
-puts "name: #{name}, email: #{email}, age: #{age}"
-
-ver = RUBY_VERSION
-puts ver
-
-puts `cat lib/fizz_buzz.rb`
+p Faker::VERSION
+p Faker::Name.name
