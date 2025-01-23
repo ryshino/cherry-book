@@ -1,17 +1,7 @@
-def judge(age)
-  adult = Proc.new { |n| n > 20 }
-  child = Proc.new { |n| n < 20 }
-
-  case age
-  when adult
-    '大人です'
-  when child
-    '子どもです'
-  else
-    'はたちです'
-  end
+hoge = case [1, 2, 3, 2, 1]
+in [*, n , 2, *] if n == 3
+  "matched: #{n}"
+else
+  "not matched"
 end
-
-puts judge(25)
-puts judge(18)
-puts judge(20)
+p hoge
